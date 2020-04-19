@@ -83,3 +83,20 @@ function updateProgress() {
     progressBar.value = Math.floor(video.currentTime);
   }
 video.addEventListener('timeupdate', updateProgress);
+
+//Update Video Seek Tooltip
+const seekTooltip = document.getElementById('seek-tooltip');
+// updateSeekTooltip uses the position of the mouse on the progress bar to
+// roughly work out what point in the video the user will skip to if the progress bar is clicked at that point
+function updateSeekTooltip(event) {
+    const skipTo = Math.round((event.offsetX / event.target.clientWidth) * parseInt(event.target.getAttribute('max'), 10));
+    seek.setAttribute('data-seek', skipTo)
+    const t = formatTime(skipTo);
+    seekTooltip.textContent = `${t.minutes}:${t.seconds}`;
+    const rect = video.getBoundingClientRect();
+    seekTooltip.style.left = `${event.pageX - rect.left}px`;
+  }
+/* The above functioncode was not written by @ishandeveloper */
+/* Thanks To Mozilla Developer Network's Documentation */
+
+seek.addEventListener('mousemove', updateSeekTooltip);
