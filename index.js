@@ -239,3 +239,21 @@ async function togglePip() {
 
 pipButton.addEventListener('click', togglePip);
 
+
+//Auto Hide Controls
+function hideControls() {
+    if (video.paused) {
+        return;
+    }
+
+    videoControls.classList.add('hide');
+}
+
+// showControls displays the video controls
+function showControls() {
+    videoControls.classList.remove('hide');
+}
+video.addEventListener('mouseenter', showControls);
+video.addEventListener('mouseleave', hideControls);
+videoControls.addEventListener('mouseenter', showControls);
+videoControls.addEventListener('mouseleave', hideControls);
