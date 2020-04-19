@@ -236,3 +236,6 @@ async function togglePip() {
         pipButton.disabled = false;
     }
 }
+
+pipButton.addEventListener('click', togglePip);
+
