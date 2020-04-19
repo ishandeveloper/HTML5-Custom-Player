@@ -31,7 +31,7 @@ function updatePlayButton() {
     playpauseIcon.forEach(icon => icon.classList.toggle('hidden'));
 
     if (video.paused) {
-        play.setAttribute('data-title', 'Play (sapce)')
+        play.setAttribute('data-title', 'Play (space)')
     } else {
         play.setAttribute('data-title', 'Pause (space)')
     }
