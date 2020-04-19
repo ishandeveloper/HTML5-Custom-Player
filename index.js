@@ -195,3 +195,44 @@ function toggleFullScreen() {
     }
 }
 fullscreenButton.onclick = toggleFullScreen;
+
+//Update full screen icon
+const fullscreenIcons = fullscreenButton.querySelectorAll('use');
+
+function updateFullscreenButton() {
+    fullscreenIcons.forEach(icon => icon.classList.toggle('hidden'));
+
+    if (document.fullscreenElement) {
+        fullscreenButton.setAttribute('data-title', 'Exit full screen (f)')
+    } else {
+        fullscreenButton.setAttribute('data-title', 'Full screen (f)')
+    }
+}
+videoContainer.addEventListener('fullscreenchange', updateFullscreenButton);
+
+// * PICTURE-IN PICTURE
+// REFER TO MOZILLA DEVELOPERS NETWORK DOCUMENTATION 
+
+//Detecting PIP support in browser
+document.addEventListener('DOMContentLoaded', () => {
+    if (!('pictureInPictureEnabled' in document)) {
+        pipButton.classList.add('hidden');
+    }
+});
+const pipButton = document.getElementById('pip-button')
+
+// togglePip toggles Picture-in-Picture mode on the video
+async function togglePip() {
+    try {
+        if (video !== document.pictureInPictureElement) {
+            pipButton.disabled = true;
+            await video.requestPictureInPicture();
+        } else {
+            await document.exitPictureInPicture();
+        }
+    } catch (error) {
+        console.error(error)
+    } finally {
+        pipButton.disabled = false;
+    }
+}
