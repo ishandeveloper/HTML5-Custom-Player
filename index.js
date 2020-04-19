@@ -133,32 +133,32 @@ volume.addEventListener('input', updateVolume);
 // Update Volume Controls Icon
 function updateVolumeIcon() {
     volumeIcons.forEach(icon => {
-      icon.classList.add('hidden');
+        icon.classList.add('hidden');
     });
-  
+
     volumeButton.setAttribute('data-title', 'Mute (m)')
-  
+
     if (video.muted || video.volume === 0) {
-      volumeMute.classList.remove('hidden');
-      volumeButton.setAttribute('data-title', 'Unmute (m)')
+        volumeMute.classList.remove('hidden');
+        volumeButton.setAttribute('data-title', 'Unmute (m)')
     } else if (video.volume > 0 && video.volume <= 0.5) {
-      volumeLow.classList.remove('hidden');
+        volumeLow.classList.remove('hidden');
     } else {
-      volumeHigh.classList.remove('hidden');
+        volumeHigh.classList.remove('hidden');
     }
-  }
+}
 
-  video.addEventListener('volumechange', updateVolumeIcon);
+video.addEventListener('volumechange', updateVolumeIcon);
 
-  //Mute|Unmute
-  function toggleMute() {
+//Mute|Unmute
+function toggleMute() {
     video.muted = !video.muted;
-  
+
     if (video.muted) {
-      volume.setAttribute('data-volume', volume.value);
-      volume.value = 0;
+        volume.setAttribute('data-volume', volume.value);
+        volume.value = 0;
     } else {
-      volume.value = volume.dataset.volume;
+        volume.value = volume.dataset.volume;
     }
 }
 volumeButton.addEventListener('click', toggleMute);
@@ -169,16 +169,29 @@ const playbackAnimation = document.getElementById('playback-animation');
 // animatePlayback displays an animation when
 // the video is played or paused
 function animatePlayback() {
-    playbackAnimation.animate([
-      {
-        opacity: 1,
-        transform: "scale(1)",
-      },
-      {
-        opacity: 0,
-        transform: "scale(1.3)",
-      }], {
-      duration: 500,
+    playbackAnimation.animate([{
+            opacity: 1,
+            transform: "scale(1)",
+        },
+        {
+            opacity: 0,
+            transform: "scale(1.3)",
+        }
+    ], {
+        duration: 500,
     });
-  }
-  video.addEventListener('click', animatePlayback);
+}
+video.addEventListener('click', animatePlayback);
+
+// Full Screen Mode 
+const fullscreenButton = document.getElementById('fullscreen-button');
+const videoContainer = document.getElementById('video-container');
+
+function toggleFullScreen() {
+    if (document.fullscreenElement) {
+        document.exitFullscreen();
+    } else {
+        videoContainer.requestFullscreen();
+    }
+}
+fullscreenButton.onclick = toggleFullScreen;
