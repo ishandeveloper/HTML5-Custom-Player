@@ -164,3 +164,21 @@ function updateVolumeIcon() {
 volumeButton.addEventListener('click', toggleMute);
 
 video.addEventListener('click', togglePlay);
+
+const playbackAnimation = document.getElementById('playback-animation');
+// animatePlayback displays an animation when
+// the video is played or paused
+function animatePlayback() {
+    playbackAnimation.animate([
+      {
+        opacity: 1,
+        transform: "scale(1)",
+      },
+      {
+        opacity: 0,
+        transform: "scale(1.3)",
+      }], {
+      duration: 500,
+    });
+  }
+  video.addEventListener('click', animatePlayback);
