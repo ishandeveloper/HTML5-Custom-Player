@@ -149,3 +149,17 @@ function updateVolumeIcon() {
   }
 
   video.addEventListener('volumechange', updateVolumeIcon);
+
+  //Mute|Unmute
+  function toggleMute() {
+    video.muted = !video.muted;
+  
+    if (video.muted) {
+      volume.setAttribute('data-volume', volume.value);
+      volume.value = 0;
+    } else {
+      volume.value = volume.dataset.volume;
+    }
+}
+volumeButton.addEventListener('click', toggleMute);
+
