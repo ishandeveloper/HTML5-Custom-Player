@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
 html {
     box-sizing: border-box;
-    font-family: "Segoe UI",Roboto,Arial,Helvetica,sans-serif;
+    font-family: "Poppins",Roboto,Arial,Helvetica,sans-serif;
     height: 100%;
   }
   
@@ -287,4 +289,22 @@ html {
     fill: #fff;
     stroke: #fff;
     cursor: pointer;
+  }
+  .credits{
+      font-size: 1.2em;
+      padding-bottom: 10px;
+  }
+  .heart{
+      color:red;
+  }
+  .credit-link{
+      text-decoration: none;
+      color:black;
+      font-weight: bold;
+      transition: all 1s;
+  }
+  .credit-link:hover{
+      font-size: 1.5em;
+      color:red;
+      text-decoration: none;
   }
