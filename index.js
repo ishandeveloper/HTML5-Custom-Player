@@ -31,9 +31,9 @@ function updatePlayButton() {
     playpauseIcon.forEach(icon => icon.classList.toggle('hidden'));
 
     if (video.paused) {
-        play.setAttribute('data-title', 'Play (k)')
+        play.setAttribute('data-title', 'Play (sapce)')
     } else {
-        play.setAttribute('data-title', 'Pause (k)')
+        play.setAttribute('data-title', 'Pause (space)')
     }
 
 }
@@ -257,3 +257,37 @@ video.addEventListener('mouseenter', showControls);
 video.addEventListener('mouseleave', hideControls);
 videoControls.addEventListener('mouseenter', showControls);
 videoControls.addEventListener('mouseleave', hideControls);
+
+//Keyboard Support
+
+// keyboardShortcuts executes the relevant functions for
+// each supported shortcut key
+function keyboardShortcuts(event) {
+    const {
+        key
+    } = event;
+    console.log(key);
+    switch (key) {
+        case ' ':
+            togglePlay();
+            animatePlayback();
+            if (video.paused) {
+                showControls();
+            } else {
+                setTimeout(() => {
+                    hideControls();
+                }, 2000);
+            }
+            break;
+        case 'm':
+            toggleMute();
+            break;
+        case 'f':
+            toggleFullScreen();
+            break;
+        case 'p':
+            togglePip();
+            break;
+    }
+}
+document.addEventListener('keyup', keyboardShortcuts);
