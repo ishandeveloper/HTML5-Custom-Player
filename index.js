@@ -109,3 +109,23 @@ function skipAhead(event) {
 }
 
 seek.addEventListener('input', skipAhead);
+
+
+// Volume Controls
+
+const volumeButton = document.getElementById('volume-button');
+const volumeIcons = document.querySelectorAll('.volume-button use');
+const volumeMute = document.querySelector('use[href="#volume-mute"]');
+const volumeLow = document.querySelector('use[href="#volume-low"]');
+const volumeHigh = document.querySelector('use[href="#volume-high"]');
+const volume = document.getElementById('volume');
+
+function updateVolume() {
+    if (video.muted) {
+        video.muted = false;
+    }
+
+    video.volume = volume.value;
+}
+volume.addEventListener('input', updateVolume);
+
