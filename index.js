@@ -163,3 +163,4 @@ function updateVolumeIcon() {
 }
 volumeButton.addEventListener('click', toggleMute);
 
+video.addEventListener('click', togglePlay);
