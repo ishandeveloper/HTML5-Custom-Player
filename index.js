@@ -29,4 +29,13 @@ video.addEventListener('pause', updatePlayButton);
 
 function updatePlayButton() {
     playpauseIcon.forEach(icon => icon.classList.toggle('hidden'));
-}
+  
+    if (video.paused) {
+      play.setAttribute('data-title', 'Play (k)')
+    } else {
+      play.setAttribute('data-title', 'Pause (k)')
+    }
+
+  }
+
+
