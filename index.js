@@ -54,12 +54,13 @@ function formatTime(timeInSeconds) {
 
 // initializeVideo sets the video duration, and maximum value of progress bar
 function initializeVideo() {
-    const videoDuration = Math.round(video.duration);
-    const time = formatTime(videoDuration);
-    duration.innerText = `${time.minutes}:${time.seconds}`;
-    duration.setAttribute('datetime', `${time.minutes}m ${time.seconds}s`)
+  const videoDuration = Math.round(video.duration);
+  seek.setAttribute('max', videoDuration);
+  progressBar.setAttribute('max', videoDuration);
+  const time = formatTime(videoDuration);
+  duration.innerText = `${time.minutes}:${time.seconds}`;
+  duration.setAttribute('datetime', `${time.minutes}m ${time.seconds}s`)
 }
-
 video.addEventListener('loadedmetadata', initializeVideo);
 
 
@@ -72,3 +73,13 @@ function updateTimeElapsed() {
 
 video.addEventListener('timeupdate', updateTimeElapsed);
 
+
+//Update Progress Bar
+const progressBar = document.getElementById('progress-bar');
+const seek = document.getElementById('seek');
+
+function updateProgress() {
+    seek.value = Math.floor(video.currentTime);
+    progressBar.value = Math.floor(video.currentTime);
+  }
+video.addEventListener('timeupdate', updateProgress);
