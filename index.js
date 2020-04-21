@@ -290,4 +290,4 @@ function keyboardShortcuts(event) {
             break;
     }
 }
-document.addEventListener('keypress', keyboardShortcuts);
+document.addEventListener('keyup', keyboardShortcuts);
